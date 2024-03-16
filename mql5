@@ -1,0 +1,81 @@
+
+//+------------------------------------------------------------------+
+//|                                             Golden Academy                                                 |
+//|                                      Developed by Forex Robot Easy Team                          |
+//|                                          www.forexroboteasy.com                                        |
+//+------------------------------------------------------------------+
+#property strict
+
+// EA parameters
+input string Trade_Set_AUTO = 'AUTO Trade Setting';
+input double LOT_SIZE_AUTO_TRADE = 0.01;
+
+// Account balance recommendation
+double recommendedLotSize = 0.01 * AccountBalance() / 200.0;
+
+//+------------------------------------------------------------------+
+//|                                                                  |
+//|                      Expert Advisor Functions                      |
+//|                                                                  |
+//+------------------------------------------------------------------+
+
+// Scan and analyze market trends across M5 to W1 timeframes
+void ScanMarketTrends()
+{
+    // Implement your scanning mechanism here
+    // This function should analyze trends across M5 to W1 timeframes
+}
+
+// Open or close positions only once every eight hours
+void OpenClosePositions()
+{
+    // Implement your logic to open or close positions here
+    // This function should be called once every eight hours
+}
+
+//+------------------------------------------------------------------+
+//|                                                                  |
+//|                     Expert Advisor Initialization                 |
+//|                                                                  |
+//+------------------------------------------------------------------+
+
+int OnInit()
+{
+    // Set default values for EA parameters
+    Trade_Set_AUTO = 'AUTO Trade Setting';
+    LOT_SIZE_AUTO_TRADE = 0.01;
+    
+    // Display the recommended lot size based on the account balance
+    Print('Recommended Lot Size: ', recommendedLotSize);
+    
+    return(INIT_SUCCEEDED);
+}
+
+//+------------------------------------------------------------------+
+//|                                                                  |
+//|                     Expert Advisor Execution                       |
+//|                                                                  |
+//+------------------------------------------------------------------+
+
+void OnTick()
+{
+    // Call the ScanMarketTrends function to analyze market trends
+    ScanMarketTrends();
+    
+    // Call the OpenClosePositions function to open or close positions
+    if (TimeHour(TimeCurrent()) % 8 == 0)
+    {
+        OpenClosePositions();
+    }
+}
+
+//+------------------------------------------------------------------+
+//|                                                                  |
+//|                      Expert Advisor Deinitialization               |
+//|                                                                  |
+//+------------------------------------------------------------------+
+
+void OnDeinit(const int reason)
+{
+    // Perform any necessary cleanup tasks here
+}
